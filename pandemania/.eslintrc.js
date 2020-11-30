@@ -5,6 +5,7 @@ module.exports = {
 		'prettier/prettier': ['error'],
 		'linebreak-style': 0,
 		'no-use-before-define': 0,
+		'no-console': 'off',
 	},
 	env: {
 		browser: true,
