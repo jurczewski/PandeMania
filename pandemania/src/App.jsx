@@ -1,11 +1,10 @@
 import React from 'react';
-import CountryData from './components/AreaCountryData/AreaCountryData';
+import Layout from './components/Layout/Layout';
 
 function App() {
 	return (
 		<div className="App">
-			<h1>PandeMania</h1>
-			<CountryData countryName="Poland" />
+			<Layout />
 		</div>
 	);
 }
