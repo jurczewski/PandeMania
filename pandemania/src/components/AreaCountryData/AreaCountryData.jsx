@@ -30,18 +30,33 @@ const initialState = {
 	],
 };
 
-const CountryData = ({ countryName }) => {
+const AreaCountryData = ({ countryName }) => {
 	const [chartData, setChartData] = useState(initialState);
 
 	const fetchData = async () => {
 		const response = await dataForCountry(countryName);
 
-		const stateToUpdate = { ...chartData };
-		stateToUpdate.series[0].data = response.map((c) => c.confirmed);
-		stateToUpdate.series[1].data = response.map((c) => c.recovered);
-		// stateToUpdate.options.xaxis.categories = response.map((c) => c.date);
+		const series = [
+			{
+				name: 'Confirmed cases',
+				data: response.map((c) => c.confirmed),
+			},
+			{
+				name: 'Recovered cases',
+				data: response.map((c) => c.recovered),
+			},
+		];
 
-		setChartData(stateToUpdate);
+		setChartData({
+			...chartData,
+			series,
+			options: {
+				...chartData.options,
+				xaxis: {
+					categories: response.map((c) => new Date(c.date).toLocaleDateString()),
+				},
+			},
+		});
 	};
 
 	useEffect(() => {
@@ -51,4 +66,4 @@ const CountryData = ({ countryName }) => {
 	return <Chart options={chartData.options} series={chartData.series} type="area" height={500} />;
 };
 
-export default CountryData;
+export default AreaCountryData;
