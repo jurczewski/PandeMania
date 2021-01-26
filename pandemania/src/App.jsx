@@ -1,11 +1,11 @@
 import React from 'react';
-import Data from './components/DataFetcher/DataFetcher';
+import CountryData from './components/AreaCountryData/AreaCountryData';
 
 function App() {
 	return (
 		<div className="App">
 			<h1>PandeMania</h1>
-			<Data countryName="Poland" />
+			<CountryData countryName="Poland" />
 		</div>
 	);
 }
