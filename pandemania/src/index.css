@@ -4,6 +4,7 @@
     --textColor: #dbd7db;
     --bgGrey: #27272c;
     --textColorInverse: #0e0f0f;
+    margin: 0 0.8rem 0;
   }
 
 body {

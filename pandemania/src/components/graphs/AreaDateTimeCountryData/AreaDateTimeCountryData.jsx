@@ -1,10 +1,14 @@
 /* eslint-disable no-case-declarations */
-/* eslint-disable react/button-has-type */
 import React, { useEffect, useState } from 'react';
 import propTypes from 'prop-types';
 import Chart from 'react-apexcharts';
 import ApexCharts from 'apexcharts';
-import dataForCountry from '../../api/FetchDataForCountry';
+import Button from '@material-ui/core/Button';
+import ButtonGroup from '@material-ui/core/ButtonGroup';
+import dataForCountry from '../../../api/FetchDataForCountry';
+import './AreaDateTimeCountryData.css';
+
+const id = 'area-datetime';
 
 const initialState = {
 	series: [
@@ -14,7 +18,7 @@ const initialState = {
 	],
 	options: {
 		chart: {
-			id: 'area-datetime',
+			id,
 			zoom: {
 				autoScaleYaxis: true,
 			},
@@ -25,29 +29,14 @@ const initialState = {
 		dataLabels: {
 			enabled: false,
 		},
-		markers: {
-			size: 0,
-			style: 'hollow',
-		},
 		xaxis: {
 			type: 'datetime',
-			// min: series[0].data[0][0],
-			// tickAmount: 6,
 		},
 		tooltip: {
 			x: {
 				format: 'dd MMM yyyy',
 			},
 		},
-		// fill: {
-		// 	type: 'gradient',
-		// 	gradient: {
-		// 		shadeIntensity: 1,
-		// 		opacityFrom: 0.7,
-		// 		opacityTo: 0.2,
-		// 		stops: [0, 100],
-		// 	},
-		// },
 	},
 	selection: 'one_year',
 };
@@ -68,22 +57,22 @@ const AreaDateTimeCountryData = ({ countryName }) => {
 		switch (timeline) {
 			case 'one_month':
 				daysToGoBack = 31;
-				ApexCharts.exec('area-datetime', 'zoomX', dates[length - daysToGoBack][0], dates[length][0]);
+				ApexCharts.exec(id, 'zoomX', dates[length - daysToGoBack][0], dates[length][0]);
 				break;
 			case 'six_months':
 				daysToGoBack = 6 * 31;
-				ApexCharts.exec('area-datetime', 'zoomX', dates[length - daysToGoBack][0], dates[dates.length - 1][0]);
+				ApexCharts.exec(id, 'zoomX', dates[length - daysToGoBack][0], dates[dates.length - 1][0]);
 				break;
 			case 'one_year':
 				daysToGoBack = 365;
-				ApexCharts.exec('area-datetime', 'zoomX', dates[length - daysToGoBack][0], dates[length][0]);
+				ApexCharts.exec(id, 'zoomX', dates[length - daysToGoBack][0], dates[length][0]);
 				break;
 			case 'ytd':
 				const firstDay = new Date(new Date().getFullYear(), 0, 1);
-				ApexCharts.exec('area-datetime', 'zoomX', firstDay.getTime(), dates[length][0]);
+				ApexCharts.exec(id, 'zoomX', firstDay.getTime(), dates[length][0]);
 				break;
 			case 'all':
-				ApexCharts.exec('area-datetime', 'zoomX', dates[0][0], dates[length][0]);
+				ApexCharts.exec(id, 'zoomX', dates[0][0], dates[length][0]);
 				break;
 			default:
 		}
@@ -114,53 +103,50 @@ const AreaDateTimeCountryData = ({ countryName }) => {
 	}, []);
 
 	return (
-		<div id="chart">
-			<div className="toolbar">
-				<button
-					id="one_month"
+		<>
+			<ButtonGroup className="toolbar">
+				<Button
+					variant="contained"
 					onClick={() => updateData('one_month')}
 					className={chartData.selection === 'one_month' ? 'active' : ''}
 				>
 					1M
-				</button>
-				&nbsp;
-				<button
-					id="six_months"
+				</Button>
+				<Button
+					variant="contained"
 					onClick={() => updateData('six_months')}
 					className={chartData.selection === 'six_months' ? 'active' : ''}
 				>
 					6M
-				</button>
-				&nbsp;
-				<button
-					id="one_year"
+				</Button>
+				<Button
+					variant="contained"
 					onClick={() => updateData('one_year')}
 					className={chartData.selection === 'one_year' ? 'active' : ''}
 				>
 					1Y
-				</button>
-				&nbsp;
-				<button
-					id="ytd"
+				</Button>
+				<Button
+					variant="contained"
 					onClick={() => updateData('ytd')}
 					className={chartData.selection === 'ytd' ? 'active' : ''}
 				>
 					YTD
-				</button>
-				&nbsp;
-				<button
-					id="all"
+				</Button>
+				<Button
+					variant="contained"
+					color="primary"
 					onClick={() => updateData('all')}
 					className={chartData.selection === 'all' ? 'active' : ''}
 				>
 					ALL
-				</button>
-			</div>
+				</Button>
+			</ButtonGroup>
 
-			<div id="chart-timeline">
+			<div>
 				<Chart options={chartData.options} series={chartData.series} type="area" height={500} />
 			</div>
-		</div>
+		</>
 	);
 };
 
