@@ -1,5 +1,15 @@
+:root {
+    --bg: #161618;
+    --bgTint: #27272c;
+    --textColor: #dbd7db;
+    --bgGrey: #27272c;
+    --textColorInverse: #0e0f0f;
+  }
+
 body {
   margin: 0;
   padding: 0;
   font-family: "Open Sans", sans-serif;
+  background-color: var(--bgGrey);
+  color: var(--textColor);
 }

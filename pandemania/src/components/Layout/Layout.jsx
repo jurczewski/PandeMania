@@ -1,6 +1,7 @@
 import React from 'react';
 import classes from './Layout.module.css';
-import AreaCountryData from '../AreaCountryData/AreaCountryData';
+import AreaCountryData from '../graphs/AreaCountryData';
+import AreaDateTimeCountryData from '../graphs/AreaDateTimeCountryData';
 
 const Layout = () => {
 	return (
@@ -11,6 +12,7 @@ const Layout = () => {
 			<main>
 				<p className={classes.title}>Cases and recoveries for whole country</p>
 				<AreaCountryData countryName="Poland" />
+				<AreaDateTimeCountryData />
 			</main>
 		</>
 	);
