@@ -41,6 +41,14 @@ const initialState = {
 	selection: 'one_year',
 };
 
+const timelineEnum = Object.freeze({
+	ONE_MONTH: 'one_month',
+	SIX_MONTH: 'six_months',
+	ONE_YEAR: 'one_year',
+	YTD: 'ytd',
+	ALL: 'all',
+});
+
 const AreaDateTimeCountryData = ({ countryName }) => {
 	const [chartData, setChartData] = useState(initialState);
 
@@ -55,23 +63,23 @@ const AreaDateTimeCountryData = ({ countryName }) => {
 		let daysToGoBack;
 
 		switch (timeline) {
-			case 'one_month':
+			case timelineEnum.ONE_MONTH:
 				daysToGoBack = 31;
 				ApexCharts.exec(id, 'zoomX', dates[length - daysToGoBack][0], dates[length][0]);
 				break;
-			case 'six_months':
+			case timelineEnum.SIX_MONTH:
 				daysToGoBack = 6 * 31;
 				ApexCharts.exec(id, 'zoomX', dates[length - daysToGoBack][0], dates[dates.length - 1][0]);
 				break;
-			case 'one_year':
+			case timelineEnum.ONE_YEAR:
 				daysToGoBack = 365;
 				ApexCharts.exec(id, 'zoomX', dates[length - daysToGoBack][0], dates[length][0]);
 				break;
-			case 'ytd':
+			case timelineEnum.YTD:
 				const firstDay = new Date(new Date().getFullYear(), 0, 1);
 				ApexCharts.exec(id, 'zoomX', firstDay.getTime(), dates[length][0]);
 				break;
-			case 'all':
+			case timelineEnum.ALL:
 				ApexCharts.exec(id, 'zoomX', dates[0][0], dates[length][0]);
 				break;
 			default:
