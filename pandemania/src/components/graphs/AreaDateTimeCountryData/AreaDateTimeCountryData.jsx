@@ -115,37 +115,37 @@ const AreaDateTimeCountryData = ({ countryName }) => {
 			<ButtonGroup className="toolbar">
 				<Button
 					variant="contained"
-					onClick={() => updateData('one_month')}
-					className={chartData.selection === 'one_month' ? 'active' : ''}
+					onClick={() => updateData(timelineEnum.ONE_MONTH)}
+					className={chartData.selection === timelineEnum.ONE_MONTH ? 'active' : ''}
 				>
 					1M
 				</Button>
 				<Button
 					variant="contained"
-					onClick={() => updateData('six_months')}
-					className={chartData.selection === 'six_months' ? 'active' : ''}
+					onClick={() => updateData(timelineEnum.SIX_MONTH)}
+					className={chartData.selection === timelineEnum.SIX_MONTH ? 'active' : ''}
 				>
 					6M
 				</Button>
 				<Button
 					variant="contained"
-					onClick={() => updateData('one_year')}
-					className={chartData.selection === 'one_year' ? 'active' : ''}
+					onClick={() => updateData(timelineEnum.ONE_YEAR)}
+					className={chartData.selection === timelineEnum.ONE_YEAR ? 'active' : ''}
 				>
 					1Y
 				</Button>
 				<Button
 					variant="contained"
-					onClick={() => updateData('ytd')}
-					className={chartData.selection === 'ytd' ? 'active' : ''}
+					onClick={() => updateData(timelineEnum.YTD)}
+					className={chartData.selection === timelineEnum.YTD ? 'active' : ''}
 				>
 					YTD
 				</Button>
 				<Button
 					variant="contained"
 					color="primary"
-					onClick={() => updateData('all')}
-					className={chartData.selection === 'all' ? 'active' : ''}
+					onClick={() => updateData(timelineEnum.ALL)}
+					className={chartData.selection === timelineEnum.ALL ? 'active' : ''}
 				>
 					ALL
 				</Button>
