@@ -1,4 +1,3 @@
-/* eslint-disable no-case-declarations */
 import React, { useEffect, useState } from 'react';
 import propTypes from 'prop-types';
 import Chart from 'react-apexcharts';
@@ -75,10 +74,11 @@ const AreaDateTimeCountryData = ({ countryName }) => {
 				daysToGoBack = 365;
 				ApexCharts.exec(id, 'zoomX', dates[length - daysToGoBack][0], dates[length][0]);
 				break;
-			case timelineEnum.YTD:
+			case timelineEnum.YTD: {
 				const firstDay = new Date(new Date().getFullYear(), 0, 1);
 				ApexCharts.exec(id, 'zoomX', firstDay.getTime(), dates[length][0]);
 				break;
+			}
 			case timelineEnum.ALL:
 				ApexCharts.exec(id, 'zoomX', dates[0][0], dates[length][0]);
 				break;
@@ -110,45 +110,43 @@ const AreaDateTimeCountryData = ({ countryName }) => {
 		fetchData();
 	}, []);
 
+	const buttons = [
+		{
+			value: timelineEnum.ONE_MONTH,
+			label: '1M',
+		},
+		{
+			value: timelineEnum.SIX_MONTH,
+			label: '6M',
+		},
+		{
+			value: timelineEnum.ONE_YEAR,
+			label: '1Y',
+		},
+		{
+			value: timelineEnum.YTD,
+			label: 'YTD',
+		},
+		{
+			value: timelineEnum.ALL,
+			label: 'ALL',
+			color: 'primary',
+		},
+	];
+
 	return (
 		<>
 			<ButtonGroup className="toolbar">
-				<Button
-					variant="contained"
-					onClick={() => updateData(timelineEnum.ONE_MONTH)}
-					className={chartData.selection === timelineEnum.ONE_MONTH ? 'active' : ''}
-				>
-					1M
-				</Button>
-				<Button
-					variant="contained"
-					onClick={() => updateData(timelineEnum.SIX_MONTH)}
-					className={chartData.selection === timelineEnum.SIX_MONTH ? 'active' : ''}
-				>
-					6M
-				</Button>
-				<Button
-					variant="contained"
-					onClick={() => updateData(timelineEnum.ONE_YEAR)}
-					className={chartData.selection === timelineEnum.ONE_YEAR ? 'active' : ''}
-				>
-					1Y
-				</Button>
-				<Button
-					variant="contained"
-					onClick={() => updateData(timelineEnum.YTD)}
-					className={chartData.selection === timelineEnum.YTD ? 'active' : ''}
-				>
-					YTD
-				</Button>
-				<Button
-					variant="contained"
-					color="primary"
-					onClick={() => updateData(timelineEnum.ALL)}
-					className={chartData.selection === timelineEnum.ALL ? 'active' : ''}
-				>
-					ALL
-				</Button>
+				{buttons.map((button) => (
+					<Button
+						variant="contained"
+						color={button.color}
+						onClick={() => updateData(button.value)}
+						className={chartData.selection === button.value ? 'active' : ''}
+					>
+						{button.label}
+					</Button>
+				))}
 			</ButtonGroup>
 
 			<div>
