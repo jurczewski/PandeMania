@@ -4,11 +4,10 @@
     --textColor: #dbd7db;
     --bgGrey: #27272c;
     --textColorInverse: #0e0f0f;
-    margin: 0 0.8rem 0;
   }
 
 body {
-  margin: 0;
+  margin: 0 0.8rem 0;
   padding: 0;
   font-family: "Open Sans", sans-serif;
   background-color: var(--bgGrey);
