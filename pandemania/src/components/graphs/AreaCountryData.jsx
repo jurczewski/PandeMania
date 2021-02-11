@@ -1,6 +1,6 @@
-/* eslint-disable react/prop-types */
 import React, { useEffect, useState } from 'react';
 import Chart from 'react-apexcharts';
+import propTypes from 'prop-types';
 import dataForCountry from '../../api/FetchDataForCountry';
 
 const initialState = {
@@ -16,6 +16,9 @@ const initialState = {
 		},
 		stroke: {
 			curve: 'smooth',
+		},
+		theme: {
+			mode: 'dark',
 		},
 	},
 	series: [
@@ -64,6 +67,14 @@ const AreaCountryData = ({ countryName }) => {
 	}, []);
 
 	return <Chart options={chartData.options} series={chartData.series} type="area" height={500} />;
+};
+
+AreaCountryData.propTypes = {
+	countryName: propTypes.string,
+};
+
+AreaCountryData.defaultProps = {
+	countryName: 'poland',
 };
 
 export default AreaCountryData;
