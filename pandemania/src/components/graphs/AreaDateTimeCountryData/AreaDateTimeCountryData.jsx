@@ -89,16 +89,19 @@ const AreaDateTimeCountryData = ({ countryName }) => {
 	const fetchData = async () => {
 		const response = await dataForCountry(countryName);
 
-		const series = [
-			{
-				name: 'Confirmed cases',
-				data: response.map((c) => [c.date, c.confirmed]),
-			},
-			{
-				name: 'Recovered cases',
-				data: response.map((c) => [c.date, c.recovered]),
-			},
-		];
+		let series = [];
+		if (typeof response !== 'undefined') {
+			series = [
+				{
+					name: 'Confirmed cases',
+					data: response.map((c) => [c.date, c.confirmed]),
+				},
+				{
+					name: 'Recovered cases',
+					data: response.map((c) => [c.date, c.recovered]),
+				},
+			];
+		}
 
 		setChartData({
 			...chartData,
@@ -139,6 +142,7 @@ const AreaDateTimeCountryData = ({ countryName }) => {
 			<ButtonGroup className="toolbar">
 				{buttons.map((button) => (
 					<Button
+						key={button.value}
 						variant="contained"
 						color={button.color}
 						onClick={() => updateData(button.value)}
