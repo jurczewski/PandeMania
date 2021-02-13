@@ -1,6 +1,7 @@
 import React from 'react';
 import './Layout.css';
 import AreaDateTimeCountryData from '../graphs/AreaDateTimeCountryData/AreaDateTimeCountryData';
+import CountryPicker from '../CountryPicker/CountryPicker';
 
 const Layout = () => {
 	const countryCode = 'Poland';
@@ -14,6 +15,7 @@ const Layout = () => {
 					Cases and recoveries for whole country: <span className="bold">{countryCode}</span>
 				</p>
 				<AreaDateTimeCountryData countryName={countryCode} />
+				<CountryPicker />
 			</main>
 		</>
 	);
