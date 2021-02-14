@@ -51,6 +51,10 @@ const timelineEnum = Object.freeze({
 const AreaDateTimeCountryData = ({ countryName }) => {
 	const [chartData, setChartData] = useState(initialState);
 
+	useEffect(() => {
+		fetchData();
+	}, [countryName]);
+
 	const updateData = (timeline) => {
 		setChartData({
 			...chartData,
@@ -109,10 +113,6 @@ const AreaDateTimeCountryData = ({ countryName }) => {
 		});
 	};
 
-	useEffect(() => {
-		fetchData();
-	}, []);
-
 	const buttons = [
 		{
 			value: timelineEnum.ONE_MONTH,
@@ -153,7 +153,8 @@ const AreaDateTimeCountryData = ({ countryName }) => {
 				))}
 			</ButtonGroup>
 
-			<div>
+			<div className="chart-wrapper">
+				{chartData.series[0].data.length === 0 && <h2 className="chart-wrapper__header">No data</h2>}
 				<Chart options={chartData.options} series={chartData.series} type="area" height={500} />
 			</div>
 		</>

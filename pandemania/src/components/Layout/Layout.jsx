@@ -1,28 +1,26 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Layout.css';
 import AreaDateTimeCountryData from '../graphs/AreaDateTimeCountryData/AreaDateTimeCountryData';
 import CountryPicker from '../CountryPicker/CountryPicker';
-import CountryContext from '../context/CountryContext';
 
 const Layout = () => {
+	const [pickedCountry, setPickedCountry] = useState({
+		slug: 'poland',
+		country: 'Poland',
+	});
+
 	return (
 		<>
 			<header>
 				<h1>PandeMania</h1>
 			</header>
 			<main>
-				<CountryContext.Consumer>
-					{(value) => (
-						<>
-							<p className="title">
-								Cases and recoveries for whole country:{' '}
-								<span className="bold">{value.countryCode}</span>
-							</p>
-							<CountryPicker />
-							<AreaDateTimeCountryData countryName={value.slug} />
-						</>
-					)}
-				</CountryContext.Consumer>
+				<p className="title">
+					Cases and recoveries for whole country:
+					{pickedCountry && <span className="bold"> {pickedCountry.country}</span>}
+				</p>
+				<CountryPicker setPickedCountry={(value) => setPickedCountry(value)} />
+				<AreaDateTimeCountryData countryName={pickedCountry.slug} />
 			</main>
 		</>
 	);
