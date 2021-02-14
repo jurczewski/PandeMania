@@ -6,22 +6,9 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import './index.css';
 import './splashscreen.css';
+import splash from './splashscreen';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import reportWebVitals from './reportWebVitals';
-
-async function splash() {
-	setTimeout(() => {
-		const loaderWrapper = document.getElementById('loader-wrapper');
-		loaderWrapper.addEventListener(
-			'transitionend',
-			() => {
-				loaderWrapper.style.display = 'none';
-			},
-			true,
-		);
-		loaderWrapper.style.opacity = 0.0;
-	}, 1200);
-}
 
 ReactDOM.render(
 	<React.StrictMode>
