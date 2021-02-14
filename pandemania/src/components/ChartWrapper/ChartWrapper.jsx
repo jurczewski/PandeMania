@@ -4,10 +4,18 @@ import Chart from 'react-apexcharts';
 import ApexCharts from 'apexcharts';
 import Button from '@material-ui/core/Button';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
-import dataForCountry from '../../../api/FetchDataForCountry';
-import './AreaDateTimeCountryData.css';
+import dataForCountry from '../../api/FetchDataForCountry';
+import './ChartWrapper.css';
 
 const id = 'area-datetime';
+
+const timelineEnum = Object.freeze({
+	ONE_MONTH: 'one_month',
+	SIX_MONTH: 'six_months',
+	ONE_YEAR: 'one_year',
+	YTD: 'ytd',
+	ALL: 'all',
+});
 
 const initialState = {
 	series: [
@@ -37,16 +45,8 @@ const initialState = {
 			},
 		},
 	},
-	selection: 'one_year',
+	selection: timelineEnum.ALL,
 };
-
-const timelineEnum = Object.freeze({
-	ONE_MONTH: 'one_month',
-	SIX_MONTH: 'six_months',
-	ONE_YEAR: 'one_year',
-	YTD: 'ytd',
-	ALL: 'all',
-});
 
 const AreaDateTimeCountryData = ({ countryName }) => {
 	const [chartData, setChartData] = useState(initialState);
@@ -56,14 +56,16 @@ const AreaDateTimeCountryData = ({ countryName }) => {
 	}, [countryName]);
 
 	const updateData = (timeline) => {
+		const dates = chartData.series[0].data;
+		const length = dates.length - 1;
+		let daysToGoBack;
+
+		if (length === -1) return;
+
 		setChartData({
 			...chartData,
 			selection: timeline,
 		});
-
-		const dates = chartData.series[0].data;
-		const length = dates.length - 1;
-		let daysToGoBack;
 
 		switch (timeline) {
 			case timelineEnum.ONE_MONTH:
@@ -133,7 +135,6 @@ const AreaDateTimeCountryData = ({ countryName }) => {
 		{
 			value: timelineEnum.ALL,
 			label: 'ALL',
-			color: 'primary',
 		},
 	];
 
@@ -144,7 +145,7 @@ const AreaDateTimeCountryData = ({ countryName }) => {
 					<Button
 						key={button.value}
 						variant="contained"
-						color={button.color}
+						color={chartData.selection === button.value ? 'primary' : ''}
 						onClick={() => updateData(button.value)}
 						className={chartData.selection === button.value ? 'active' : ''}
 					>
