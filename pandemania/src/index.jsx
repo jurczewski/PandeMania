@@ -5,14 +5,33 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import './index.css';
+import './splashscreen.css';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import reportWebVitals from './reportWebVitals';
 
+async function splash() {
+	setTimeout(() => {
+		const loaderWrapper = document.getElementById('loader-wrapper');
+		loaderWrapper.addEventListener(
+			'transitionend',
+			() => {
+				loaderWrapper.style.display = 'none';
+			},
+			true,
+		);
+		loaderWrapper.style.opacity = 0.0;
+	}, 1200);
+}
+
 ReactDOM.render(
 	<React.StrictMode>
+		<div id="loader-wrapper">
+			<div id="loader" />
+		</div>
 		<App />
 	</React.StrictMode>,
 	document.getElementById('root'),
+	splash,
 );
 
 // If you want your app to work offline and load faster, you can change
