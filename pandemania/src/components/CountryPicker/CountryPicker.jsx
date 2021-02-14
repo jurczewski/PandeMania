@@ -7,6 +7,7 @@ import parse from 'autosuggest-highlight/parse';
 import match from 'autosuggest-highlight/match';
 import allCountries from '../../api/FetchAllCountries';
 import CountryIcon from '../CountryIcon/CountryIcon';
+import CountryContext from '../context/CountryContext';
 import './CountryPicker.css';
 
 const darkTheme = createMuiTheme({
@@ -17,6 +18,7 @@ const darkTheme = createMuiTheme({
 
 const CountryPicker = () => {
 	const [countries, setCountries] = useState([]);
+	const [pickedCountry, setPickedCountry] = useState();
 
 	const fetchData = async () => {
 		const response = await allCountries();
@@ -30,31 +32,36 @@ const CountryPicker = () => {
 	}, []);
 
 	return (
-		<ThemeProvider theme={darkTheme}>
-			<Autocomplete
-				id="highlights-demo"
-				theme={darkTheme}
-				style={{ width: 300 }}
-				options={countries}
-				getOptionLabel={(option) => option.country}
-				renderInput={(params) => <TextField {...params} label="Countries" variant="outlined" margin="normal" />}
-				renderOption={(option, { inputValue }) => {
-					const matches = match(option.country, inputValue);
-					const parts = parse(option.country, matches);
+		<CountryContext.Provider value={pickedCountry}>
+			<ThemeProvider theme={darkTheme}>
+				<Autocomplete
+					id="highlights-demo"
+					theme={darkTheme}
+					style={{ width: 300 }}
+					options={countries}
+					getOptionLabel={(option) => option.country}
+					onChange={(_event, value) => setPickedCountry(value)}
+					renderInput={(params) => (
+						<TextField {...params} label="Countries" variant="outlined" margin="normal" />
+					)}
+					renderOption={(option, { inputValue }) => {
+						const matches = match(option.country, inputValue);
+						const parts = parse(option.country, matches);
 
-					return (
-						<>
-							<CountryIcon code={option.ISO2} name={option.country} />
-							{parts.map((part) => (
-								<span key={part.text} style={{ fontWeight: part.highlight ? 700 : 400 }}>
-									{part.text}
-								</span>
-							))}
-						</>
-					);
-				}}
-			/>
-		</ThemeProvider>
+						return (
+							<>
+								<CountryIcon code={option.ISO2} name={option.country} />
+								{parts.map((part) => (
+									<span key={part.text} style={{ fontWeight: part.highlight ? 700 : 400 }}>
+										{part.text}
+									</span>
+								))}
+							</>
+						);
+					}}
+				/>
+			</ThemeProvider>
+		</CountryContext.Provider>
 	);
 };
 

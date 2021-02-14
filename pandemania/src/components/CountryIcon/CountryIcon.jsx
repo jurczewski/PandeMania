@@ -22,7 +22,7 @@ export default CountryIcon;
 
 CountryIcon.propTypes = {
 	code: propTypes.string,
-	size: sizes,
+	size: propTypes.number,
 	name: propTypes.string,
 	theme: propTypes.string,
 };
