@@ -1,23 +1,23 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import firebase from 'firebase';
-import Layout from './components/Layout/Layout';
-import Login from './components/Login/Login';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import UserProvider from './context/user/UserProvider';
 import config from './FirebaseConfig';
+import RestrictedRoute from './components/RestrictedRoute/RestrictedRoute';
+import Layout from './components/Layout/Layout';
+import Login from './components/Login/Login';
 
 firebase.initializeApp(config);
 
 function App() {
-	console.log(firebase.auth().currentUser);
 	return (
 		<UserProvider>
 			<div className="App">
 				<Router>
 					<Switch>
-						<Route path="/home">
+						<RestrictedRoute path="/home">
 							<Layout />
-						</Route>
+						</RestrictedRoute>
 						<Route path="/">
 							<Login />
 						</Route>
