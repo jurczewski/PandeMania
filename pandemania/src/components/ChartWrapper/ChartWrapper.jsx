@@ -48,7 +48,7 @@ const initialState = {
 	selection: timelineEnum.ALL,
 };
 
-const AreaDateTimeCountryData = ({ countryName }) => {
+const ChartWrapper = ({ countryName }) => {
 	const [chartData, setChartData] = useState(initialState);
 
 	useEffect(() => {
@@ -162,12 +162,8 @@ const AreaDateTimeCountryData = ({ countryName }) => {
 	);
 };
 
-AreaDateTimeCountryData.propTypes = {
-	countryName: propTypes.string,
+ChartWrapper.propTypes = {
+	countryName: propTypes.string.isRequired,
 };
 
-AreaDateTimeCountryData.defaultProps = {
-	countryName: 'poland',
-};
-
-export default AreaDateTimeCountryData;
+export default ChartWrapper;

@@ -24,8 +24,7 @@ const CountryPicker = ({ setPickedCountry }) => {
 	}, []);
 
 	const fetchData = async () => {
-		const response = await allCountries();
-		const fetchedCountries = response.map((c) => c);
+		const fetchedCountries = await allCountries();
 		const sortedCountries = fetchedCountries.sort((a, b) => a.country.localeCompare(b.country));
 		setCountries(sortedCountries);
 	};
