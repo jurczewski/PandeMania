@@ -5,8 +5,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import './index.css';
-import './splashscreen.css';
-import splash from './splashscreen';
+import './splashscreen/splashscreen.css';
+import splash from './splashscreen/splashscreen';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import reportWebVitals from './reportWebVitals';
 

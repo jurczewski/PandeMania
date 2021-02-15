@@ -1,4 +1,3 @@
-
 async function splash() {
 	setTimeout(() => {
 		const loaderWrapper = document.getElementById('loader-wrapper');
