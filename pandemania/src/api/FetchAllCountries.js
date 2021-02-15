@@ -3,7 +3,12 @@ const apiUrl = 'https://api.covid19api.com/countries';
 const allCountries = async () => {
 	try {
 		return fetch(apiUrl)
-			.then((response) => response.json())
+			.then((response) => {
+				if (response.ok) {
+					return response.json();
+				}
+				return [];
+			})
 			.then((data) =>
 				data.map((record) => ({
 					country: record.Country,

@@ -4,10 +4,18 @@ import Chart from 'react-apexcharts';
 import ApexCharts from 'apexcharts';
 import Button from '@material-ui/core/Button';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
-import dataForCountry from '../../../api/FetchDataForCountry';
-import './AreaDateTimeCountryData.css';
+import dataForCountry from '../../api/FetchDataForCountry';
+import './ChartWrapper.css';
 
 const id = 'area-datetime';
+
+const timelineEnum = Object.freeze({
+	ONE_MONTH: 'one_month',
+	SIX_MONTH: 'six_months',
+	ONE_YEAR: 'one_year',
+	YTD: 'ytd',
+	ALL: 'all',
+});
 
 const initialState = {
 	series: [
@@ -37,29 +45,27 @@ const initialState = {
 			},
 		},
 	},
-	selection: 'one_year',
+	selection: timelineEnum.ALL,
 };
 
-const timelineEnum = Object.freeze({
-	ONE_MONTH: 'one_month',
-	SIX_MONTH: 'six_months',
-	ONE_YEAR: 'one_year',
-	YTD: 'ytd',
-	ALL: 'all',
-});
-
-const AreaDateTimeCountryData = ({ countryName }) => {
+const ChartWrapper = ({ countryName }) => {
 	const [chartData, setChartData] = useState(initialState);
 
+	useEffect(() => {
+		fetchData();
+	}, [countryName]);
+
 	const updateData = (timeline) => {
+		const dates = chartData.series[0].data;
+		const length = dates.length - 1;
+		let daysToGoBack;
+
+		if (length === -1) return;
+
 		setChartData({
 			...chartData,
 			selection: timeline,
 		});
-
-		const dates = chartData.series[0].data;
-		const length = dates.length - 1;
-		let daysToGoBack;
 
 		switch (timeline) {
 			case timelineEnum.ONE_MONTH:
@@ -109,10 +115,6 @@ const AreaDateTimeCountryData = ({ countryName }) => {
 		});
 	};
 
-	useEffect(() => {
-		fetchData();
-	}, []);
-
 	const buttons = [
 		{
 			value: timelineEnum.ONE_MONTH,
@@ -133,7 +135,6 @@ const AreaDateTimeCountryData = ({ countryName }) => {
 		{
 			value: timelineEnum.ALL,
 			label: 'ALL',
-			color: 'primary',
 		},
 	];
 
@@ -144,7 +145,7 @@ const AreaDateTimeCountryData = ({ countryName }) => {
 					<Button
 						key={button.value}
 						variant="contained"
-						color={button.color}
+						color={chartData.selection === button.value ? 'primary' : ''}
 						onClick={() => updateData(button.value)}
 						className={chartData.selection === button.value ? 'active' : ''}
 					>
@@ -153,19 +154,16 @@ const AreaDateTimeCountryData = ({ countryName }) => {
 				))}
 			</ButtonGroup>
 
-			<div>
+			<div className="chart-wrapper">
+				{chartData.series[0].data.length === 0 && <h2 className="chart-wrapper__header">No data</h2>}
 				<Chart options={chartData.options} series={chartData.series} type="area" height={500} />
 			</div>
 		</>
 	);
 };
 
-AreaDateTimeCountryData.propTypes = {
-	countryName: propTypes.string,
+ChartWrapper.propTypes = {
+	countryName: propTypes.string.isRequired,
 };
 
-AreaDateTimeCountryData.defaultProps = {
-	countryName: 'poland',
-};
-
-export default AreaDateTimeCountryData;
+export default ChartWrapper;

@@ -1,5 +1,6 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React, { useEffect, useState } from 'react';
+import propTypes from 'prop-types';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
@@ -15,19 +16,24 @@ const darkTheme = createMuiTheme({
 	},
 });
 
-const CountryPicker = () => {
+const CountryPicker = ({ setPickedCountry }) => {
 	const [countries, setCountries] = useState([]);
-
-	const fetchData = async () => {
-		const response = await allCountries();
-		const fetchedCountries = response.map((c) => c);
-		const sortedCountries = fetchedCountries.sort((a, b) => a.country.localeCompare(b.country));
-		setCountries(sortedCountries);
-	};
 
 	useEffect(() => {
 		fetchData();
 	}, []);
+
+	const fetchData = async () => {
+		const fetchedCountries = await allCountries();
+		const sortedCountries = fetchedCountries.sort((a, b) => a.country.localeCompare(b.country));
+		setCountries(sortedCountries);
+	};
+
+	const handleCountrySelection = (value) => {
+		if (value) {
+			setPickedCountry(value);
+		}
+	};
 
 	return (
 		<ThemeProvider theme={darkTheme}>
@@ -37,6 +43,7 @@ const CountryPicker = () => {
 				style={{ width: 300 }}
 				options={countries}
 				getOptionLabel={(option) => option.country}
+				onChange={(_, value) => handleCountrySelection(value)}
 				renderInput={(params) => <TextField {...params} label="Countries" variant="outlined" margin="normal" />}
 				renderOption={(option, { inputValue }) => {
 					const matches = match(option.country, inputValue);
@@ -56,6 +63,10 @@ const CountryPicker = () => {
 			/>
 		</ThemeProvider>
 	);
+};
+
+CountryPicker.propTypes = {
+	setPickedCountry: propTypes.func.isRequired,
 };
 
 export default CountryPicker;
