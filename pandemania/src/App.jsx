@@ -6,6 +6,7 @@ import config from './FirebaseConfig';
 import RestrictedRoute from './components/RestrictedRoute/RestrictedRoute';
 import Layout from './components/Layout/Layout';
 import Login from './components/Login/Login';
+import Logout from './components/Logout/Logout';
 
 firebase.initializeApp(config);
 
@@ -17,6 +18,9 @@ function App() {
 					<Switch>
 						<RestrictedRoute path="/home">
 							<Layout />
+						</RestrictedRoute>
+						<RestrictedRoute path="/logout">
+							<Logout />
 						</RestrictedRoute>
 						<Route path="/">
 							<Login />
