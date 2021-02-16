@@ -56,8 +56,28 @@ registerRoute(
 		plugins: [
 			// Ensure that once this runtime cache reaches a maximum size the
 			// least-recently used images are removed.
-			new ExpirationPlugin({ maxEntries: 50 }),
+			new ExpirationPlugin({ maxEntries: 300 }),
 		],
+	}),
+);
+
+registerRoute(
+	({ url }) => url.pathname.match('/countries'),
+	new StaleWhileRevalidate({
+		cacheName: 'countries',
+		plugins: [
+			new ExpirationPlugin({ maxEntries: 300 }),
+		]
+	}),
+);
+
+registerRoute(
+	({ url }) => url.pathname.startsWith('/country/'),
+	new StaleWhileRevalidate({
+		cacheName: 'countryStats',
+		plugins: [
+			new ExpirationPlugin({ maxEntries: 300 }),
+		]
 	}),
 );
 
