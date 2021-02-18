@@ -17,7 +17,7 @@ const allCountries = async () => {
 				})),
 			);
 	} catch (error) {
-		return console.warn(error);
+		return console.log(error);
 	}
 };
 

@@ -50,14 +50,34 @@ registerRoute(
 // precache, in this case same-origin .png requests like those from in public/
 registerRoute(
 	// Add in any other file extensions or routing criteria as needed.
-	({ url }) => url.origin === self.location.origin && url.pathname.endsWith('.png'), // Customize this strategy as needed, e.g., by changing to CacheFirst.
+	({ url }) => url.origin === self.location.origin && (url.pathname.endsWith('.png') || url.pathname.endsWith('.ico')), // Customize this strategy as needed, e.g., by changing to CacheFirst.
 	new StaleWhileRevalidate({
 		cacheName: 'images',
 		plugins: [
 			// Ensure that once this runtime cache reaches a maximum size the
 			// least-recently used images are removed.
-			new ExpirationPlugin({ maxEntries: 50 }),
+			new ExpirationPlugin({ maxEntries: 300 }),
 		],
+	}),
+);
+
+registerRoute(
+	({ url }) => url.pathname.match('/countries'),
+	new StaleWhileRevalidate({
+		cacheName: 'countries',
+		plugins: [
+			new ExpirationPlugin({ maxEntries: 300 }),
+		]
+	}),
+);
+
+registerRoute(
+	({ url }) => url.pathname.startsWith('/country/'),
+	new StaleWhileRevalidate({
+		cacheName: 'countryStats',
+		plugins: [
+			new ExpirationPlugin({ maxEntries: 300 }),
+		]
 	}),
 );
 
