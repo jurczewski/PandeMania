@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import firebase from 'firebase';
+import firebase from 'firebase/app';
+import 'firebase/auth';
 import PropTypes from 'prop-types';
 import UserContext from './UserContext';
 
@@ -12,7 +13,6 @@ const UserProvider = ({ children }) => {
 
 	useEffect(() => {
 		firebase.auth().onAuthStateChanged((userAuth) => {
-			console.log(userAuth);
 			setUser({
 				user: userAuth,
 				fetched: true,

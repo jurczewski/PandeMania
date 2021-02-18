@@ -1,5 +1,5 @@
 import React from 'react';
-import firebase from 'firebase';
+import firebase from 'firebase/app';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import UserProvider from './context/user/UserProvider';
 import config from './FirebaseConfig';
@@ -16,14 +16,14 @@ function App() {
 			<div className="App">
 				<Router>
 					<Switch>
-						<RestrictedRoute path="/home">
-							<Layout />
-						</RestrictedRoute>
+						<Route path="/login">
+							<Login />
+						</Route>
 						<RestrictedRoute path="/logout">
 							<Logout />
 						</RestrictedRoute>
 						<Route path="/">
-							<Login />
+							<Layout />
 						</Route>
 					</Switch>
 				</Router>
