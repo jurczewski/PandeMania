@@ -45,6 +45,8 @@ const TableWrapper = ({ countryName }) => {
 				createData('Recovered', today.recovered),
 				createData('Active', today.active),
 			]);
+		} else {
+			setRows(initialState);
 		}
 	};
 
