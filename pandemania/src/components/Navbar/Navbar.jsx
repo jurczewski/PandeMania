@@ -5,7 +5,8 @@ import Toolbar from '@material-ui/core/Toolbar';
 import { useHistory } from 'react-router-dom';
 import UserContext from '../../context/user/UserContext';
 import LoginButton from './LoginButton/LoginButton';
-import LogoutButton from './LogoutButton/LogoutButton';
+import UserMenu from './UserMenu/UserMenu';
+import './Navbar.css';
 
 const Navbar = () => {
 	const history = useHistory();
@@ -14,16 +15,19 @@ const Navbar = () => {
 	return (
 		<AppBar style={{ backgroundColor: '#303046' }}>
 			<Toolbar>
-				<div style={{ flexGrow: 1, textAlign: 'center' }}>
+				<div className="empty" />
+				<div className="navtitle" style={{ textAlign: 'center' }}>
 					<Typography variant="h6" onClick={() => history.push('/')}>
 						PandeMania 🦠
 					</Typography>
 				</div>
-				{userContext.user == null ? (
-					<LoginButton onClick={() => history.push('/login')} />
-				) : (
-					<LogoutButton onClick={() => history.push('/logout')} />
-				)}
+				<div className="actions">
+					{userContext.user == null ? (
+						<LoginButton onClick={() => history.push('/login')} />
+					) : (
+						<UserMenu onClick={() => history.push('/logout')} displayName={userContext.user.displayName} />
+					)}
+				</div>
 			</Toolbar>
 		</AppBar>
 	);

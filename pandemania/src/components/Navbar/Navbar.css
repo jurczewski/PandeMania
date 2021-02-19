@@ -1,0 +1,15 @@
+.empty {
+	width: 25%;
+}
+
+.navtitle {
+	width: 50%;
+	display: block;
+	text-align: center;
+}
+
+.actions {
+	display: block;
+	text-align: end;
+	width: 25%;
+}
