@@ -49,22 +49,24 @@ const TableWrapper = ({ countryName }) => {
 	};
 
 	return (
-		<ThemeProvider theme={darkTheme}>
-			<TableContainer component={Paper}>
-				<Table aria-label="country statistic">
-					<TableBody>
-						{rows.map((row) => (
-							<TableRow key={row.name}>
-								<TableCell component="th" scope="row">
-									{row.name}
-								</TableCell>
-								<TableCell align="right">{row.number}</TableCell>
-							</TableRow>
-						))}
-					</TableBody>
-				</Table>
-			</TableContainer>
-		</ThemeProvider>
+		<div style={{ marginBottom: '1rem' }}>
+			<ThemeProvider theme={darkTheme}>
+				<TableContainer component={Paper}>
+					<Table aria-label="country statistic">
+						<TableBody>
+							{rows.map((row) => (
+								<TableRow key={row.name}>
+									<TableCell component="th" scope="row" style={{ fontWeight: 'bold' }}>
+										{row.name}
+									</TableCell>
+									<TableCell align="right">{row.number}</TableCell>
+								</TableRow>
+							))}
+						</TableBody>
+					</Table>
+				</TableContainer>
+			</ThemeProvider>
+		</div>
 	);
 };
 
