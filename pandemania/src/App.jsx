@@ -1,6 +1,7 @@
 import React, { Suspense } from 'react';
 import { HashRouter as Router, Route, Switch } from 'react-router-dom';
 import { initialize } from './api/FirebaseAPI';
+import './App.css';
 
 const Login = React.lazy(() => import('./components/Login/Login'));
 const Layout = React.lazy(() => import('./components/Layout/Layout'));
