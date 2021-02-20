@@ -3,7 +3,7 @@ import firebase from 'firebase/app';
 import 'firebase/auth';
 import PropTypes from 'prop-types';
 import UserContext from './UserContext';
-import { getFavoriteCountry } from '../../api/FavoriteCountryCRUD';
+import { getFavoriteCountry } from '../../api/FirebaseAPI';
 
 const initialState = {
 	user: null,

@@ -5,7 +5,7 @@ import RestrictedRoute from './components/RestrictedRoute/RestrictedRoute';
 import Layout from './components/Layout/Layout';
 import Login from './components/Login/Login';
 import Logout from './components/Logout/Logout';
-import { initialize } from './api/FavoriteCountryCRUD';
+import { initialize } from './api/FirebaseAPI';
 
 initialize();
 

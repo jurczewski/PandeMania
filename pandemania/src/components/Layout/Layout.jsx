@@ -5,7 +5,7 @@ import CountryPicker from '../CountryPicker/CountryPicker';
 import CountryIcon from '../CountryIcon/CountryIcon';
 import FavoriteIconWrapper from '../FavoriteIcon/FavoriteIcon';
 import UserContext from '../../context/user/UserContext';
-import { addFavoriteCountry } from '../../api/FavoriteCountryCRUD';
+import { addFavoriteCountry } from '../../api/FirebaseAPI';
 import { getCountryInfo } from '../../api/FetchAllCountries';
 
 const Layout = () => {
