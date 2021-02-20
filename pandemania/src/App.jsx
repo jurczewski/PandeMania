@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { HashRouter as Router, Route, Switch } from 'react-router-dom';
 import UserProvider from './context/user/UserProvider';
 import RestrictedRoute from './components/RestrictedRoute/RestrictedRoute';
 import Layout from './components/Layout/Layout';
