@@ -14,7 +14,7 @@ const Layout = () => {
 	const [pickedCountry, setPickedCountry] = useState({
 		slug: 'poland',
 		country: 'Poland',
-		ISO2: 'pl',
+		ISO2: 'PL',
 	});
 
 	useEffect(() => {

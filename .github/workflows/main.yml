@@ -17,7 +17,7 @@ jobs:
         run: |
           cd pandemania
           yarn install
-          yarn run build
+          yarn build production
       - name: Deploy 🚀
         uses: peaceiris/actions-gh-pages@v3
         with:
