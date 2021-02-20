@@ -21,3 +21,8 @@ img{
   margin-left: 0.25rem;
   margin-top: auto;
 }
+
+.picker{
+	display:flex;
+	flex-direction:row;
+}
