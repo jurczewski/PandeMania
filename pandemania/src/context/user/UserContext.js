@@ -3,6 +3,7 @@ import React from 'react';
 export const initialState = {
 	user: null,
 	fetched: false,
+	country: '',
 
 	setUser: () => {},
 };

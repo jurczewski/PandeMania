@@ -6,7 +6,7 @@ import Autocomplete from '@material-ui/lab/Autocomplete';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import parse from 'autosuggest-highlight/parse';
 import match from 'autosuggest-highlight/match';
-import allCountries from '../../api/FetchAllCountries';
+import { allCountries } from '../../api/FetchAllCountries';
 import CountryIcon from '../CountryIcon/CountryIcon';
 import './CountryPicker.css';
 

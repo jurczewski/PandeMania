@@ -1,0 +1,11 @@
+.wrapper{
+	margin-left: 0.75rem;
+	display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon:hover {
+  cursor: pointer;
+}
+

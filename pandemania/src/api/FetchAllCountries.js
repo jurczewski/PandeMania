@@ -1,6 +1,6 @@
 const apiUrl = 'https://api.covid19api.com/countries';
 
-const allCountries = async () => {
+export const allCountries = async () => {
 	try {
 		return fetch(apiUrl)
 			.then((response) => {
@@ -21,4 +21,7 @@ const allCountries = async () => {
 	}
 };
 
-export default allCountries;
+export const getCountryInfo = async (code) => {
+	const countries = await allCountries();
+	return countries.find((c) => c.ISO2 === code);
+};
