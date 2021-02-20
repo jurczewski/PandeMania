@@ -41,10 +41,12 @@ const Layout = () => {
 				</p>
 				<div className="picker">
 					<CountryPicker setPickedCountry={(value) => setPickedCountry(value)} />
-					<FavoriteIconWrapper
-						onClick={handleSetFavoriteCountry}
-						isSet={pickedCountry.ISO2 === userCountry}
-					/>
+					{user && (
+						<FavoriteIconWrapper
+							onClick={handleSetFavoriteCountry}
+							isSet={pickedCountry.ISO2 === userCountry}
+						/>
+					)}
 				</div>
 				<AreaDateTimeCountryData countryName={pickedCountry.slug} />
 			</main>
