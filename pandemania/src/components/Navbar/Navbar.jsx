@@ -25,7 +25,13 @@ const Navbar = () => {
 					{userContext.user == null ? (
 						<LoginButton onClick={() => history.push('/login')} />
 					) : (
-						<UserMenu onClick={() => history.push('/logout')} displayName={userContext.user.displayName} />
+						<UserMenu
+							onClick={() => history.push('/logout')}
+							displayName={
+								userContext.user.displayName ? userContext.user.displayName : userContext.user.email
+							}
+							country={userContext.country}
+						/>
 					)}
 				</div>
 			</Toolbar>
