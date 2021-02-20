@@ -31,9 +31,6 @@ const Layout = () => {
 
 	return (
 		<>
-			<header>
-				<h1>PandeMania 🦠</h1>
-			</header>
 			<main>
 				<p className="title">
 					Cases and recoveries for whole country:
