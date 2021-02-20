@@ -7,7 +7,6 @@ let db;
 export const initialize = () => {
 	const app = firebase.initializeApp(config);
 	db = firebase.firestore(app);
-	// firebase.firestore.setLogLevel('debug');
 };
 
 export const addFavoriteCountry = (userId, countryCode) => {
@@ -15,9 +14,6 @@ export const addFavoriteCountry = (userId, countryCode) => {
 		.doc(userId)
 		.set({
 			country: countryCode,
-		})
-		.then(() => {
-			console.log(`Favorite country has been set to: ${countryCode}`);
 		})
 		.catch((error) => {
 			console.error('Error writing document: ', error);

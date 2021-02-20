@@ -15,14 +15,15 @@ const UserProvider = ({ children }) => {
 
 	useEffect(() => {
 		firebase.auth().onAuthStateChanged((userAuth) => {
-			getFavoriteCountry(userAuth.uid).then((country) => {
-				setUser({
-					user: userAuth,
-					fetched: true,
-					country,
+			if (userAuth) {
+				getFavoriteCountry(userAuth.uid).then((country) => {
+					setUser({
+						user: userAuth,
+						fetched: true,
+						country,
+					});
 				});
-				console.warn(country);
-			});
+			}
 		});
 	}, []);
 
