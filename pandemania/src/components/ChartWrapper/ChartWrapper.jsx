@@ -107,12 +107,12 @@ const ChartWrapper = ({ countryName }) => {
 					data: response.map((c) => [c.date, c.recovered]),
 				},
 			];
-		}
 
-		setChartData({
-			...chartData,
-			series,
-		});
+			setChartData({
+				...chartData,
+				series,
+			});
+		}
 	};
 
 	const buttons = [

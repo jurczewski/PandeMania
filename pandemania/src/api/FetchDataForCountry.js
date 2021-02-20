@@ -15,6 +15,8 @@ const dataForCountry = async (countryName) => {
 					country: record.Country,
 					confirmed: record.Confirmed,
 					recovered: record.Recovered,
+					deaths: record.Deaths,
+					active: record.Active,
 					date: Date.parse(record.Date),
 				})),
 			);

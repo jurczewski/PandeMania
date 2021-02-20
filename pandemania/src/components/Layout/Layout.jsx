@@ -7,6 +7,7 @@ import FavoriteIconWrapper from '../FavoriteIcon/FavoriteIcon';
 import UserContext from '../../context/user/UserContext';
 import { addFavoriteCountry } from '../../api/FirebaseAPI';
 import { getCountryInfo } from '../../api/FetchAllCountries';
+import TableWrapper from '../TableWrapper/TableWrapper';
 
 const Layout = () => {
 	const { country: userCountry, user, setUser, fetched } = useContext(UserContext);
@@ -49,6 +50,7 @@ const Layout = () => {
 					)}
 				</div>
 				<AreaDateTimeCountryData countryName={pickedCountry.slug} />
+				<TableWrapper countryName={pickedCountry.slug} />
 			</main>
 		</>
 	);
