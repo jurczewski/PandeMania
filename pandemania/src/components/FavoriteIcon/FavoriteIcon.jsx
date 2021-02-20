@@ -4,15 +4,17 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import PropTypes from 'prop-types';
 import './FavoriteIcon.css';
 
-const FavoriteIconWrapper = ({ isSet, onClick }) => {
-	const iconSize = '2rem';
+const iconStyle = {
+	fontSize: '2rem',
+};
 
+const FavoriteIconWrapper = ({ isSet, onClick }) => {
 	return (
 		<div className="wrapper">
 			{isSet ? (
-				<FavoriteIcon onClick={onClick} className="icon" style={{ fontSize: iconSize }} />
+				<FavoriteIcon onClick={onClick} className="icon" style={iconStyle} />
 			) : (
-				<FavoriteBorderIcon onClick={onClick} className="icon" style={{ fontSize: iconSize }} />
+				<FavoriteBorderIcon onClick={onClick} className="icon" style={iconStyle} />
 			)}
 		</div>
 	);
