@@ -3,6 +3,7 @@ import './Layout.css';
 import AreaDateTimeCountryData from '../ChartWrapper/ChartWrapper';
 import CountryPicker from '../CountryPicker/CountryPicker';
 import CountryIcon from '../CountryIcon/CountryIcon';
+import TableWrapper from '../TableWrapper/TableWrapper';
 
 const Layout = () => {
 	const [pickedCountry, setPickedCountry] = useState({
@@ -23,6 +24,7 @@ const Layout = () => {
 				</p>
 				<CountryPicker setPickedCountry={(value) => setPickedCountry(value)} />
 				<AreaDateTimeCountryData countryName={pickedCountry.slug} />
+				<TableWrapper countryName={pickedCountry.slug} />
 			</main>
 		</>
 	);
