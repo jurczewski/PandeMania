@@ -1,4 +1,4 @@
-html, body, #viewDiv {
+#viewDiv{
     height: 100%;
     width: 100%;
     margin: 0;
