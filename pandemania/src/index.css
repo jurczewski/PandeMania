@@ -13,3 +13,11 @@ body {
   background-color: var(--bgGrey);
   color: var(--textColor);
 }
+
+@media(min-width: 1000px){
+    body{
+			margin: 0 auto 0;
+			padding: 0;
+			width: 50%;
+    }
+}
