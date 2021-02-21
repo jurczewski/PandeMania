@@ -30,7 +30,9 @@ const TableWrapper = ({ countryName }) => {
 	const [rows, setRows] = useState(initialState);
 
 	useEffect(() => {
-		fetchData();
+		if (countryName) {
+			fetchData();
+		}
 	}, [countryName]);
 
 	const fetchData = async () => {

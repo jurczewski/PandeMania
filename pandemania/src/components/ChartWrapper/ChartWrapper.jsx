@@ -52,7 +52,9 @@ const ChartWrapper = ({ countryName }) => {
 	const [chartData, setChartData] = useState(initialState);
 
 	useEffect(() => {
-		fetchData();
+		if (countryName) {
+			fetchData();
+		}
 	}, [countryName]);
 
 	const updateData = (timeline) => {
