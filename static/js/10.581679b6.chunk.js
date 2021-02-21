@@ -1,0 +1,2 @@
+(this.webpackJsonppandemania=this.webpackJsonppandemania||[]).push([[10],{183:function(t,e,n){"use strict";n.r(e);var u=n(3),a=n(1),c=n(19),s=(n(63),n(4)),r=n(55);e.default=function(){var t=Object(a.useContext)(r.a);return Object(a.useEffect)((function(){t.fetched&&c.a.auth().signOut().then((function(){return t.setUser({user:null,fetched:!1})}))})),Object(u.jsx)(s.a,{to:"/"})}},55:function(t,e,n){"use strict";var u=n(1),a={user:null,fetched:!1,country:"",setUser:function(){}},c=n.n(u).a.createContext(a);e.a=c}}]);
+//# sourceMappingURL=10.581679b6.chunk.js.map
