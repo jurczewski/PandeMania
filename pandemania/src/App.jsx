@@ -1,8 +1,10 @@
 import React, { Suspense } from 'react';
 import { HashRouter as Router, Route, Switch } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
 import { initialize } from './api/FirebaseAPI';
 import './App.css';
 import Loading from './components/Loading/Loading';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Login = React.lazy(() => import('./components/Login/Login'));
 const Layout = React.lazy(() => import('./components/Layout/Layout'));
@@ -34,6 +36,7 @@ function App() {
 							</Switch>
 						</div>
 					</Router>
+					<ToastContainer position="bottom-center" />
 				</div>
 			</UserProvider>
 		</Suspense>
