@@ -8,6 +8,8 @@ import Divider from '@material-ui/core/Divider';
 import LogoutMenuItem from './LogoutMenuItem/LogoutMenuItem';
 import CountryIcon from '../../CountryIcon/CountryIcon';
 
+const menuItemStyle = { backgroundColor: 'transparent', cursor: 'default' };
+
 const UserMenu = ({ onClick, displayName, country }) => {
 	const [anchor, setAnchor] = useState(null);
 	const menuRef = useRef();
@@ -38,21 +40,13 @@ const UserMenu = ({ onClick, displayName, country }) => {
 				open={Boolean(anchor)}
 				onClose={closeMenu}
 			>
-				<MenuItem
-					style={{ backgroundColor: 'transparent', cursor: 'default' }}
-					disableRipple
-					aria-label="User display name"
-				>
+				<MenuItem style={menuItemStyle} disableRipple aria-label="User display name">
 					<span>
 						<b>Username: </b>
 						{displayName}
 					</span>
 				</MenuItem>
-				<MenuItem
-					style={{ backgroundColor: 'transparent', cursor: 'default' }}
-					disableRipple
-					aria-label="User default country"
-				>
+				<MenuItem style={menuItemStyle} disableRipple aria-label="User default country">
 					<b style={{ width: '55%' }}>Country: </b>
 					{country ? <CountryIcon code={country} size={24} /> : 'No country set'}
 				</MenuItem>
