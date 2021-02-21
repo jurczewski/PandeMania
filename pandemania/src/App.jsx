@@ -2,6 +2,7 @@ import React, { Suspense } from 'react';
 import { HashRouter as Router, Route, Switch } from 'react-router-dom';
 import { initialize } from './api/FirebaseAPI';
 import './App.css';
+import Loading from './components/Loading/Loading';
 
 const Login = React.lazy(() => import('./components/Login/Login'));
 const Layout = React.lazy(() => import('./components/Layout/Layout'));
@@ -14,7 +15,7 @@ initialize();
 
 function App() {
 	return (
-		<Suspense fallback={<div>Loading...</div>}>
+		<Suspense fallback={<Loading />}>
 			<UserProvider>
 				<div className="App">
 					<Router>
