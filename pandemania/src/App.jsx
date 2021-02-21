@@ -14,7 +14,7 @@ initialize();
 
 function App() {
 	return (
-		<Suspense fallback={<></>}>
+		<Suspense fallback={<div>Loading...</div>}>
 			<UserProvider>
 				<div className="App">
 					<Router>
