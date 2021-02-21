@@ -4,6 +4,7 @@ import 'firebase/auth';
 import PropTypes from 'prop-types';
 import UserContext from './UserContext';
 import { getFavoriteCountry } from '../../api/FirebaseAPI';
+import { loginSuccessToast } from '../../api/Toasts';
 
 const initialState = {
 	user: null,
@@ -22,6 +23,7 @@ const UserProvider = ({ children }) => {
 						fetched: true,
 						country,
 					});
+					loginSuccessToast();
 				});
 			}
 		});

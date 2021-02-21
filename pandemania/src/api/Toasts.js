@@ -1,7 +1,13 @@
 import { toast } from 'react-toastify';
 
-const apiError = () => {
+export const apiErrorToast = () => {
 	toast.error('Covid API id down, please try again later', { toastId: 'api-error' });
 };
 
-export default apiError;
+export const loginSuccessToast = () => {
+	toast.success('Successfully logged in!', { toastId: 'login' });
+};
+
+export const newFavouriteToast = (newFavourite) => {
+	toast.info(`Your new default country is ${newFavourite}`, { toastId: `new-favourite-${newFavourite}` });
+};

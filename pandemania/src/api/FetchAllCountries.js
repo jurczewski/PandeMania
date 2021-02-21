@@ -1,4 +1,4 @@
-import apiError from './Toasts';
+import { apiErrorToast } from './Toasts';
 
 const apiUrl = 'https://api.covid19api.com/countries';
 
@@ -19,7 +19,7 @@ export const allCountries = async () => {
 		)
 		.catch((error) => {
 			console.warn(error);
-			apiError();
+			apiErrorToast();
 			return [];
 		});
 };
