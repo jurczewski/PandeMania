@@ -18,7 +18,7 @@ const UserMenu = ({ onClick, displayName, country }) => {
 
 	return (
 		<>
-			<IconButton ref={menuRef} onClick={openMenu}>
+			<IconButton ref={menuRef} onClick={openMenu} aria-label="user menu">
 				<SvgIcon>
 					<path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z" />
 				</SvgIcon>
@@ -26,6 +26,7 @@ const UserMenu = ({ onClick, displayName, country }) => {
 			<Menu
 				anchorEl={anchor}
 				getContentAnchorEl={null}
+				disableScrollLock
 				anchorOrigin={{
 					vertical: 'bottom',
 					horizontal: 'right',
@@ -37,13 +38,21 @@ const UserMenu = ({ onClick, displayName, country }) => {
 				open={Boolean(anchor)}
 				onClose={closeMenu}
 			>
-				<MenuItem style={{ backgroundColor: 'transparent', cursor: 'default' }} disableRipple>
+				<MenuItem
+					style={{ backgroundColor: 'transparent', cursor: 'default' }}
+					disableRipple
+					aria-label="User display name"
+				>
 					<span>
 						<b>Username: </b>
 						{displayName}
 					</span>
 				</MenuItem>
-				<MenuItem style={{ backgroundColor: 'transparent', cursor: 'default' }} disableRipple>
+				<MenuItem
+					style={{ backgroundColor: 'transparent', cursor: 'default' }}
+					disableRipple
+					aria-label="User default country"
+				>
 					<b style={{ width: '55%' }}>Country: </b>
 					{country ? <CountryIcon code={country} size={24} /> : 'No country set'}
 				</MenuItem>
