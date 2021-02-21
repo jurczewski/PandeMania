@@ -1,3 +1,5 @@
+import { apiErrorToast } from './Toasts';
+
 const apiUrl = 'https://api.covid19api.com/country/';
 
 const dataForCountry = async (countryName) => {
@@ -21,6 +23,7 @@ const dataForCountry = async (countryName) => {
 		)
 		.catch((error) => {
 			console.warn(error);
+			apiErrorToast();
 			return [];
 		});
 };

@@ -8,6 +8,7 @@ import UserContext from '../../context/user/UserContext';
 import { addFavoriteCountry } from '../../api/FirebaseAPI';
 import { getCountryInfo } from '../../api/FetchAllCountries';
 import TableWrapper from '../TableWrapper/TableWrapper';
+import { newFavouriteToast } from '../../api/Toasts';
 
 const initialState = {
 	slug: null,
@@ -35,6 +36,7 @@ const Layout = () => {
 		const id = user.uid;
 		addFavoriteCountry(id, pickedCountry.ISO2);
 		setUser({ user, fetched, country: pickedCountry.ISO2 });
+		newFavouriteToast(pickedCountry.country);
 	};
 
 	return (
