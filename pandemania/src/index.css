@@ -1,10 +1,10 @@
 :root {
-    --bg: #161618;
-    --bgTint: #27272c;
-    --textColor: #dbd7db;
-    --bgGrey: #27272c;
-    --textColorInverse: #0e0f0f;
-  }
+	--bg: #161618;
+	--bgTint: #27272c;
+	--textColor: #dbd7db;
+	--bgGrey: #27272c;
+	--textColorInverse: #0e0f0f;
+}
 
 body {
   margin: 0 0.8rem 0;
@@ -15,9 +15,9 @@ body {
 }
 
 @media(min-width: 1000px){
-    body{
-			margin: 0 auto 0;
-			padding: 0;
-			width: 50%;
-    }
+	body {
+		margin: 0 auto 0;
+		padding: 0;
+		width: 50%;
+	}
 }
