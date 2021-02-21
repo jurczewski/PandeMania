@@ -6,7 +6,12 @@ let db;
 
 export const initialize = () => {
 	const app = firebase.initializeApp(config);
-	db = firebase.firestore(app);
+	firebase
+		.firestore()
+		.enablePersistence()
+		.then(() => {
+			db = firebase.firestore(app);
+		});
 };
 
 export const addFavoriteCountry = (userId, countryCode) => {
