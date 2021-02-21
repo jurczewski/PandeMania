@@ -19,7 +19,7 @@ const CountryIcon = ({ code, size, name, theme }) => {
 		width: size,
 		height: size,
 	};
-	return <img src={`https://www.countryflags.io/${code}/${theme}/${size}.png`} alt={name} style={imgStyle} />;
+	return <img src={`https://www.countryflags.io/${code}/${theme}/24.png`} alt={name} style={imgStyle} />;
 };
 
 export default CountryIcon;
