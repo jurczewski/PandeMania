@@ -15,7 +15,11 @@ const themes = Object.freeze({
 });
 
 const CountryIcon = ({ code, size, name, theme }) => {
-	return <img src={`https://www.countryflags.io/${code}/${theme}/${size}.png`} alt={name} />;
+	const imgStyle = {
+		width: size,
+		height: size,
+	};
+	return <img src={`https://www.countryflags.io/${code}/${theme}/${size}.png`} alt={name} style={imgStyle} />;
 };
 
 export default CountryIcon;

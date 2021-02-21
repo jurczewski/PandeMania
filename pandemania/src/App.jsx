@@ -1,23 +1,22 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import { HashRouter as Router, Route, Switch } from 'react-router-dom';
-import UserProvider from './context/user/UserProvider';
-import RestrictedRoute from './components/RestrictedRoute/RestrictedRoute';
-import Layout from './components/Layout/Layout';
-import Login from './components/Login/Login';
-import Logout from './components/Logout/Logout';
-import Navbar from './components/Navbar/Navbar';
 import { initialize } from './api/FirebaseAPI';
 import './App.css';
+
+const Login = React.lazy(() => import('./components/Login/Login'));
+const Layout = React.lazy(() => import('./components/Layout/Layout'));
+const Logout = React.lazy(() => import('./components/Logout/Logout'));
+const RestrictedRoute = React.lazy(() => import('./components/RestrictedRoute/RestrictedRoute'));
+const UserProvider = React.lazy(() => import('./context/user/UserProvider'));
 
 initialize();
 
 function App() {
 	return (
-		<UserProvider>
-			<div className="App">
-				<Router>
-					<Navbar />
-					<div className="content">
+		<Suspense fallback={<></>}>
+			<UserProvider>
+				<div className="App">
+					<Router>
 						<Switch>
 							<Route path="/login">
 								<Login />
@@ -25,14 +24,14 @@ function App() {
 							<RestrictedRoute path="/logout">
 								<Logout />
 							</RestrictedRoute>
-							<Route path="/">
+							<Route path="*">
 								<Layout />
 							</Route>
 						</Switch>
-					</div>
-				</Router>
-			</div>
-		</UserProvider>
+					</Router>
+				</div>
+			</UserProvider>
+		</Suspense>
 	);
 }
 
