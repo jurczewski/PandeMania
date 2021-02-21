@@ -73,7 +73,11 @@ const TableWrapper = ({ countryName }) => {
 };
 
 TableWrapper.propTypes = {
-	countryName: propTypes.string.isRequired,
+	countryName: propTypes.string,
+};
+
+TableWrapper.defaultProps = {
+	countryName: null,
 };
 
 export default TableWrapper;
