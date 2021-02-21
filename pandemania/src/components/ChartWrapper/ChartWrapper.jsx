@@ -163,7 +163,11 @@ const ChartWrapper = ({ countryName }) => {
 };
 
 ChartWrapper.propTypes = {
-	countryName: propTypes.string.isRequired,
+	countryName: propTypes.string,
+};
+
+ChartWrapper.defaultProps = {
+	countryName: null,
 };
 
 export default ChartWrapper;

@@ -15,11 +15,17 @@ const themes = Object.freeze({
 });
 
 const CountryIcon = ({ code, size, name, theme }) => {
+	const isCountrySet = () => {
+		return code && size && name && theme;
+	};
+
 	const imgStyle = {
 		width: size,
 		height: size,
 	};
-	return <img src={`https://www.countryflags.io/${code}/${theme}/24.png`} alt={name} style={imgStyle} />;
+	return isCountrySet() ? (
+		<img src={`https://www.countryflags.io/${code}/${theme}/24.png`} alt={name} style={imgStyle} />
+	) : null;
 };
 
 export default CountryIcon;

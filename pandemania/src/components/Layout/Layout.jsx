@@ -9,17 +9,25 @@ import { addFavoriteCountry } from '../../api/FirebaseAPI';
 import { getCountryInfo } from '../../api/FetchAllCountries';
 import TableWrapper from '../TableWrapper/TableWrapper';
 
+const initialState = {
+	slug: null,
+	country: null,
+	ISO2: null,
+};
+
 const Layout = () => {
 	const { country: userCountry, user, setUser, fetched } = useContext(UserContext);
-	const [pickedCountry, setPickedCountry] = useState({
-		slug: 'poland',
-		country: 'Poland',
-		ISO2: 'PL',
-	});
+	const [pickedCountry, setPickedCountry] = useState(initialState);
 
 	useEffect(() => {
 		if (typeof userCountry !== 'undefined' && userCountry !== '') {
-			getCountryInfo(userCountry).then((country) => setPickedCountry(country));
+			getCountryInfo(userCountry).then((country) => {
+				if (country) {
+					setPickedCountry(country);
+				} else {
+					setPickedCountry(initialState);
+				}
+			});
 		}
 	}, [userCountry]);
 
@@ -34,7 +42,11 @@ const Layout = () => {
 			<main>
 				<p className="title">
 					Cases and recoveries for whole country:
-					{pickedCountry && <span className="bold"> {pickedCountry.country}</span>}
+					{pickedCountry.country ? (
+						<span className="bold"> {pickedCountry.country}</span>
+					) : (
+						<span>No country set</span>
+					)}
 					<CountryIcon code={pickedCountry.ISO2} size={24} name={pickedCountry.country} />
 				</p>
 				<div className="picker">
