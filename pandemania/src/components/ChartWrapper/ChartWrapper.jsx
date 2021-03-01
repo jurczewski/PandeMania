@@ -76,7 +76,7 @@ const ChartWrapper = ({ countryName }) => {
 				break;
 			case timelineEnum.SIX_MONTH:
 				daysToGoBack = 6 * 31;
-				ApexCharts.exec(id, 'zoomX', dates[length - daysToGoBack][0], dates[dates.length - 1][0]);
+				ApexCharts.exec(id, 'zoomX', dates[length - daysToGoBack][0], dates[length][0]);
 				break;
 			case timelineEnum.ONE_YEAR:
 				daysToGoBack = 365;
