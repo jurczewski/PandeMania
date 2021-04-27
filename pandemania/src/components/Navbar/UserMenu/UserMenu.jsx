@@ -48,7 +48,7 @@ const UserMenu = ({ onClick, displayName, country }) => {
 				</MenuItem>
 				<MenuItem style={menuItemStyle} disableRipple aria-label="User default country">
 					<b style={{ width: '55%' }}>Country: </b>
-					{country ? <CountryIcon code={country} size={24} /> : 'No country set'}
+					{country ? <CountryIcon code={country} /> : 'No country set'}
 				</MenuItem>
 				<Divider style={{ backgroundColor: 'grey', marginTop: '1vh', marginBottom: '1vh' }} />
 				<LogoutMenuItem onClick={onClick} />

@@ -1,28 +1,32 @@
 h1 {
-  text-align: center;
+	text-align: center;
 }
 
-.title{
-  font-size: 1rem;
-  margin: 0 0rem 0.5rem;
-  display: flex;
-  align-items: center;
+.title {
+	font-size: 1rem;
+	margin: 0 0rem 0.5rem;
+	display: flex;
+	align-items: center;
 }
 
-.title span{
-  margin-left: 0.5rem;
+.title span {
+	margin-left: 0.5rem;
 }
 
-.bold{
-  font-weight: bold;
+.title img {
+	width: 28px;
 }
 
-img{
-  margin-left: 0.25rem;
-  margin-top: auto;
+.bold {
+	font-weight: bold;
 }
 
-.picker{
-	display:flex;
-	flex-direction:row;
+img {
+	margin-left: 0.25rem;
+	margin-top: auto;
+}
+
+.picker {
+	display: flex;
+	flex-direction: row;
 }

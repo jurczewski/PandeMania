@@ -49,7 +49,7 @@ const Layout = () => {
 					) : (
 						<span>No country set</span>
 					)}
-					<CountryIcon code={pickedCountry.ISO2} size={24} name={pickedCountry.country} />
+					<CountryIcon code={pickedCountry.ISO2} size={40} name={pickedCountry.country} />
 				</p>
 				<div className="picker">
 					<CountryPicker setPickedCountry={(value) => setPickedCountry(value)} />
